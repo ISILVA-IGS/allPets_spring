@@ -1,19 +1,20 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.model.Cuidador;
-import br.com.allpets.AllPets.repository.CuidadorRepository;
+import br.com.allpets.AllPets.model.Dono;
+import br.com.allpets.AllPets.repository.DonoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/cadastro/cuidador")
-public class CadastroCuidadorController {
-    private CuidadorRepository repository;
+@RequestMapping("/cadastro/dono")
+public class DonoController {
+    private DonoRepository repository;
 
-    CadastroCuidadorController(CuidadorRepository cuidadorRepository) {
-        this.repository = cuidadorRepository;
+    DonoController(DonoRepository donoRepository) {
+        this.repository = donoRepository;
     }
 
     @GetMapping
@@ -29,22 +30,19 @@ public class CadastroCuidadorController {
     }
 
     @PostMapping
-    public Cuidador create(@RequestBody Cuidador cuidador){
-        return repository.save(cuidador);
+    public Dono create(@RequestBody Dono dono){
+        return repository.save(dono);
     }
 
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody Cuidador cuidador) {
+                                 @RequestBody Dono dono) {
         return repository.findById(id)
                 .map(record -> {
-                    record.setNome(cuidador.getNome());
-                    record.setSenha(cuidador.getSenha());
-                    record.setEspecialidade(cuidador.getEspecialidade());
-                    record.setGraduacao(cuidador.getGraduacao());
-                    record.setQtdAnimais(cuidador.getQtdAnimais());
-                    record.setValorHora(cuidador.getValorHora());
-                    Cuidador updated = repository.save(record);
+                    record.setNome(dono.getNome());
+                    record.setIdade(dono.getIdade());
+                    record.setSenha(dono.getSenha());
+                    Dono updated = repository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
