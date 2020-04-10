@@ -1,0 +1,7 @@
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/repository/CuidadorRepository.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/controller/CadastroCuidadorController.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/dao/DonoDAO.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/AllPetsApplication.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/dao/CuidadorDAO.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/repository/DonoRepository.java
+/home/wender/Documentos/allPets_spring/src/main/java/br/com/allpets/AllPets/controller/CadastroDonoController.java

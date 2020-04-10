@@ -1,9 +1,7 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.dao.CuidadorDAO;
-import br.com.allpets.AllPets.dao.DonoDAO;
+import br.com.allpets.AllPets.model.Cuidador;
 import br.com.allpets.AllPets.repository.CuidadorRepository;
-import br.com.allpets.AllPets.repository.DonoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,22 +29,22 @@ public class CadastroCuidadorController {
     }
 
     @PostMapping
-    public CuidadorDAO create(@RequestBody CuidadorDAO cuidadorDAO){
-        return repository.save(cuidadorDAO);
+    public Cuidador create(@RequestBody Cuidador cuidador){
+        return repository.save(cuidador);
     }
 
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody CuidadorDAO cuidadorDAO) {
+                                 @RequestBody Cuidador cuidador) {
         return repository.findById(id)
                 .map(record -> {
-                    record.setNome(cuidadorDAO.getNome());
-                    record.setSenha(cuidadorDAO.getSenha());
-                    record.setEspecialidade(cuidadorDAO.getEspecialidade());
-                    record.setGraduacao(cuidadorDAO.getGraduacao());
-                    record.setQtdAnimais(cuidadorDAO.getQtdAnimais());
-                    record.setValorHora(cuidadorDAO.getValorHora());
-                    CuidadorDAO updated = repository.save(record);
+                    record.setNome(cuidador.getNome());
+                    record.setSenha(cuidador.getSenha());
+                    record.setEspecialidade(cuidador.getEspecialidade());
+                    record.setGraduacao(cuidador.getGraduacao());
+                    record.setQtdAnimais(cuidador.getQtdAnimais());
+                    record.setValorHora(cuidador.getValorHora());
+                    Cuidador updated = repository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }

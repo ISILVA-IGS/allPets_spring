@@ -1,13 +1,11 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.dao.DonoDAO;
+import br.com.allpets.AllPets.model.Dono;
 import br.com.allpets.AllPets.repository.DonoRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,19 +30,19 @@ public class CadastroDonoController {
     }
 
     @PostMapping
-    public DonoDAO create(@RequestBody DonoDAO donoDAO){
-        return repository.save(donoDAO);
+    public Dono create(@RequestBody Dono dono){
+        return repository.save(dono);
     }
 
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody DonoDAO donoDAO) {
+                                 @RequestBody Dono dono) {
         return repository.findById(id)
                 .map(record -> {
-                    record.setNome(donoDAO.getNome());
-                    record.setIdade(donoDAO.getIdade());
-                    record.setSenha(donoDAO.getSenha());
-                    DonoDAO updated = repository.save(record);
+                    record.setNome(dono.getNome());
+                    record.setIdade(dono.getIdade());
+                    record.setSenha(dono.getSenha());
+                    Dono updated = repository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
