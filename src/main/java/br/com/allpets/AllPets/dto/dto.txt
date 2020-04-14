@@ -1,1 +1,33 @@
-dto
+
+Controller
+
+Url "/usuario"
+
+padrão rest
+@Get
+@Post
+@Delete
+@Put
+
+Model
+
+criação
+usuario
+
+Repository
+select u
+usuario
+
+Service
+if (senha == senha)
+find
+usuario
+
+Controller -> Service -> Repository
+
+@Get("/usuario") solicita todos os usuarios -> findAll() ou findById() -> faz a comunicação -> Banco de dados
+
+entrada -> processamento -> saida
+saida -> processamento -> entrada
+
+
