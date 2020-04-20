@@ -15,9 +15,6 @@ public class TypeUser {
     private String name;
 
     @ManyToOne
-    private Care fkCare;
-
-    @ManyToOne
     private Animal fkAnimal;
 
     @ManyToOne
@@ -25,9 +22,6 @@ public class TypeUser {
 
     @OneToMany(mappedBy="fkTypeUserA")
     private Set<Animal> fkTypeUserA = new HashSet<>();
-
-    @OneToMany(mappedBy="fkTypeUserC")
-    private Set<Care> fkTypeUserC = new HashSet<>();
 
     @OneToMany(mappedBy="fkTypeUserU")
     private Set<UserService> fkTypeUserU = new HashSet<>();
@@ -56,14 +50,6 @@ public class TypeUser {
         this.name = name;
     }
 
-    public Care getFkCare() {
-        return fkCare;
-    }
-
-    public void setFkCare(Care fkCare) {
-        this.fkCare = fkCare;
-    }
-
     public Animal getFkAnimal() {
         return fkAnimal;
     }
@@ -86,13 +72,5 @@ public class TypeUser {
 
     public void setFkTypeUserA(Set<Animal> fkTypeUserA) {
         this.fkTypeUserA = fkTypeUserA;
-    }
-
-    public Set<Care> getFkTypeUserC() {
-        return fkTypeUserC;
-    }
-
-    public void setFkTypeUserC(Set<Care> fkTypeUserC) {
-        this.fkTypeUserC = fkTypeUserC;
     }
 }
