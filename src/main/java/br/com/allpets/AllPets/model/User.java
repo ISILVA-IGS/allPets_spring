@@ -35,12 +35,28 @@ public class User {
 
     @Column( length = 20)
     private Integer phone;
+    @Column( length = 45)
+    private Integer qtdAnimals;
+
+    @Column( length = 45)
+    private Double valueTime;
+
+    @Column( length = 45)
+    private String specialty;
+
+    @Column( length = 45)
+    private String graduation;
+
+    @Column( length = 45)
+    private String typePet;
 
     @OneToMany(mappedBy="fkUserAdd")
     private Set<Address> fkUserAdd = new HashSet<>();
 
     @OneToMany(mappedBy="fkOwner")
     private Set<TypeUser> fkOwner = new HashSet<>();
+
+    public User() {}
 
     public Integer getIdUser() {
         return idUser;
@@ -124,6 +140,46 @@ public class User {
 
     public Integer getPhone() {
         return phone;
+    }
+
+    public Integer getQtdAnimals() {
+        return qtdAnimals;
+    }
+
+    public void setQtdAnimals(Integer qtdAnimals) {
+        this.qtdAnimals = qtdAnimals;
+    }
+
+    public Double getValueTime() {
+        return valueTime;
+    }
+
+    public void setValueTime(Double valueTime) {
+        this.valueTime = valueTime;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getGraduation() {
+        return graduation;
+    }
+
+    public void setGraduation(String graduation) {
+        this.graduation = graduation;
+    }
+
+    public String getTypePet() {
+        return typePet;
+    }
+
+    public void setTypePet(String typePet) {
+        this.typePet = typePet;
     }
 
     public void setPhone(Integer phone) {

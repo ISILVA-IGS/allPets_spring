@@ -1,6 +1,6 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.model.Care;
+import br.com.allpets.AllPets.model.User;
 import br.com.allpets.AllPets.service.CareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class CareController {
 
     @GetMapping("/{id}")
     public ResponseEntity oneCare(@PathVariable Integer id){
-        Optional<Care> queryCare = this.service.oneCare(id);
+        Optional<User> queryCare = this.service.oneCare(id);
 
         if(queryCare.isPresent()){
             return ResponseEntity.ok(queryCare.get());
@@ -36,7 +36,7 @@ public class CareController {
     }
 
     @PostMapping
-    public ResponseEntity createCare(@RequestBody Care newCare) {
+    public ResponseEntity createCare(@RequestBody User newCare) {
         this.service.createCare(newCare);
         return ResponseEntity.created(null).build();
     }

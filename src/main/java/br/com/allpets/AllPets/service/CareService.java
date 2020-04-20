@@ -1,6 +1,6 @@
 package br.com.allpets.AllPets.service;
 
-import br.com.allpets.AllPets.model.Care;
+import br.com.allpets.AllPets.model.User;
 import br.com.allpets.AllPets.repository.CareRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class CareService {
         return this.repository.count();
     }
 
-    public Care createCare( Care newCare) {
+    public User createCare(User newCare) {
         return this.repository.save(newCare);
     }
 
@@ -30,7 +30,7 @@ public class CareService {
         return this.repository.existsById(id);
     }
 
-    public Optional<Care> oneCare(Integer id) {
+    public Optional<User> oneCare(Integer id) {
         return this.repository.findById(id);
     }
 
