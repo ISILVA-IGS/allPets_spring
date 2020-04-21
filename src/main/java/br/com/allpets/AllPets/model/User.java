@@ -8,9 +8,24 @@ import java.util.Set;
 @Entity
 public class User {
 
+
+
     @Id
     @GeneratedValue
     private Integer idUser;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean twoFactor;
+
+    public Integer getTwoFactorCode() {
+        return twoFactorCode;
+    }
+
+    public void setTwoFactorCode(Integer twoFactorCode) {
+        this.twoFactorCode = twoFactorCode;
+    }
+
+    private Integer twoFactorCode;
 
     @Column(length = 45)
     private String name;
@@ -35,6 +50,7 @@ public class User {
 
     @Column( length = 20)
     private Integer phone;
+
     @Column( length = 45)
     private Integer qtdAnimals;
 
@@ -185,4 +201,8 @@ public class User {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
+
+    public Boolean getTwoFactor() { return twoFactor; }
+
+    public void setTwoFactor(Boolean twoFactor) { this.twoFactor = twoFactor; }
 }
