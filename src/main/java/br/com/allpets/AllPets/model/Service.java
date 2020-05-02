@@ -1,6 +1,7 @@
 package br.com.allpets.AllPets.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,19 +14,22 @@ public class Service {
     private Integer idService;
 
     @ManyToOne
-    private UserService fkUserService;
+    private User fkCare;
+
+    @ManyToOne
+    private User fkOwnerS;
 
     @Column( length = 45)
-    private Integer protocol;
+    private LocalDate startTime;
 
     @Column( length = 45)
-    private Date startTime;
-
-    @Column( length = 45)
-    private Date stopTime;
+    private LocalDate stopTime;
 
     @Column( length = 45)
     private Double value;
+
+    @OneToMany(mappedBy="fkAnimal")
+    private Set<ServiceAnimal> fkAnimal = new HashSet<>();
 
     public Integer getIdService() {
         return idService;
@@ -35,35 +39,36 @@ public class Service {
         this.idService = idService;
     }
 
-    public UserService getFkUserService() {
-        return fkUserService;
+    public User getFkCare() {
+        return fkCare;
     }
 
-    public void setFkUserService(UserService fkUserService) {
-        this.fkUserService = fkUserService;
+    public void setFkCare(User fkCare) {
+        this.fkCare = fkCare;
     }
 
-    public Integer getProtocol() {
-        return protocol;
+    public User getFkOwnerS() {
+        return fkOwnerS;
     }
 
-    public void setProtocol(Integer protocol) {
-        this.protocol = protocol;
+    public void setFkOwnerS(User fkOwner) {
+        this.fkOwnerS = fkOwner;
     }
 
-    public Date getStartTime() {
+
+    public LocalDate getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDate startTime) {
         this.startTime = startTime;
     }
 
-    public Date getStopTime() {
+    public LocalDate getStopTime() {
         return stopTime;
     }
 
-    public void setStopTime(Date stopTime) {
+    public void setStopTime(LocalDate stopTime) {
         this.stopTime = stopTime;
     }
 
@@ -73,5 +78,13 @@ public class Service {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public Set<ServiceAnimal> getFkAnimal() {
+        return fkAnimal;
+    }
+
+    public void setFkAnimal(Set<ServiceAnimal> fkAnimal) {
+        this.fkAnimal = fkAnimal;
     }
 }

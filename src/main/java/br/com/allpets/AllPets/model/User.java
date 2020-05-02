@@ -1,6 +1,7 @@
 package br.com.allpets.AllPets.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,11 +40,8 @@ public class User {
     @Column( length = 20)
     private Integer cpf;
 
-    @Column( length = 20)
-    private Integer rg;
-
     @Column( length = 10)
-    private String birthDate;
+    private LocalDate birthDate;
 
     @Column ( length = 20)
     private String sex;
@@ -52,25 +50,25 @@ public class User {
     private Integer phone;
 
     @Column( length = 45)
-    private Integer qtdAnimals;
+    private Double balanceCredit;
 
     @Column( length = 45)
     private Double valueTime;
 
     @Column( length = 45)
-    private String specialty;
-
-    @Column( length = 45)
-    private String graduation;
-
-    @Column( length = 45)
-    private String typePet;
+    private Integer typeUser;
 
     @OneToMany(mappedBy="fkUserAdd")
     private Set<Address> fkUserAdd = new HashSet<>();
 
-    @OneToMany(mappedBy="fkOwner")
-    private Set<TypeUser> fkOwner = new HashSet<>();
+    @OneToMany(mappedBy="fkOwnerA")
+    private Set<Animal> fkOwnerA = new HashSet<>();
+
+    @OneToMany(mappedBy="fkOwnerS")
+    private Set<Service> fkOwnerS = new HashSet<>();
+
+    @OneToMany(mappedBy="fkCare")
+    private Set<Service> fkCare = new HashSet<>();
 
     public User() {}
 
@@ -78,12 +76,12 @@ public class User {
         return idUser;
     }
 
-    public Set<TypeUser> getFkOwner() {
-        return fkOwner;
+    public Set<Service> getFkOwnerS() {
+        return fkOwnerS;
     }
 
-    public void setFkOwner(Set<TypeUser> fkOwner) {
-        this.fkOwner = fkOwner;
+    public void setFkOwnerS(Set<Service> fkOwner) {
+        this.fkOwnerS = fkOwner;
     }
 
     public void setIdUser(Integer id) {
@@ -130,19 +128,11 @@ public class User {
         this.cpf = cpf;
     }
 
-    public Integer getRg() {
-        return rg;
-    }
-
-    public void setRg(Integer rg) {
-        this.rg = rg;
-    }
-
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -158,44 +148,12 @@ public class User {
         return phone;
     }
 
-    public Integer getQtdAnimals() {
-        return qtdAnimals;
-    }
-
-    public void setQtdAnimals(Integer qtdAnimals) {
-        this.qtdAnimals = qtdAnimals;
-    }
-
     public Double getValueTime() {
         return valueTime;
     }
 
     public void setValueTime(Double valueTime) {
         this.valueTime = valueTime;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public String getGraduation() {
-        return graduation;
-    }
-
-    public void setGraduation(String graduation) {
-        this.graduation = graduation;
-    }
-
-    public String getTypePet() {
-        return typePet;
-    }
-
-    public void setTypePet(String typePet) {
-        this.typePet = typePet;
     }
 
     public void setPhone(Integer phone) {
@@ -205,4 +163,36 @@ public class User {
     public Boolean getTwoFactor() { return twoFactor; }
 
     public void setTwoFactor(Boolean twoFactor) { this.twoFactor = twoFactor; }
+
+    public Double getBalanceCredit() {
+        return balanceCredit;
+    }
+
+    public void setBalanceCredit(Double balanceCredit) {
+        this.balanceCredit = balanceCredit;
+    }
+
+    public Integer getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(Integer typeUser) {
+        this.typeUser = typeUser;
+    }
+
+    public Set<Service> getFkCare() {
+        return fkCare;
+    }
+
+    public void setFkCare(Set<Service> fkCare) {
+        this.fkCare = fkCare;
+    }
+
+    public Set<Animal> getFkOwnerA() {
+        return fkOwnerA;
+    }
+
+    public void setFkOwnerA(Set<Animal> fkOwnerA) {
+        this.fkOwnerA = fkOwnerA;
+    }
 }
