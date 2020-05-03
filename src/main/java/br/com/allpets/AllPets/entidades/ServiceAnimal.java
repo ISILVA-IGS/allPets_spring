@@ -1,5 +1,7 @@
 package br.com.allpets.AllPets.entidades;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +20,18 @@ public class ServiceAnimal {
 
     @ManyToOne
     private Animal fkAnimal;
+
+    @JsonProperty("idPet")
+    private void fkPet(Integer idPet) {
+        this.fkAnimal = new Animal(idPet);
+        fkAnimal.setIdPet(idPet);
+    }
+
+    @JsonProperty("idService")
+    private void fkService(Integer idService) {
+        this.fkService = new Service(idService);
+        fkService.setIdService(idService);
+    }
 
     public Integer getIdServiceAnimal() {
         return idServiceAnimal;

@@ -1,5 +1,8 @@
 package br.com.allpets.AllPets.entidades;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -27,6 +30,22 @@ public class Service {
     @Column( length = 45)
     private Double value;
 
+    @JsonCreator
+    public Service (@JsonProperty("idService") Integer idService ) {
+        this.idService = idService;
+    }
+
+    @JsonProperty("idUser")
+    private void fkOwner(Integer idUser) {
+        this.fkOwner = new User(idUser);
+        fkOwner.setIdUser(idUser);
+    }
+
+    @JsonProperty("idUser")
+    private void fkCare(Integer idUser) {
+        this.fkCare = new User(idUser);
+        fkCare.setIdUser(idUser);
+    }
 
     public Integer getIdService() {
         return idService;

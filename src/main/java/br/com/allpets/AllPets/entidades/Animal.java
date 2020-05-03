@@ -1,5 +1,8 @@
 package br.com.allpets.AllPets.entidades;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +37,17 @@ public class Animal {
 
     @ManyToOne
     private User fkOwner;
+
+    @JsonCreator
+    public Animal (@JsonProperty("idPet") Integer idPet ) {
+        this.idPet = idPet;
+    }
+
+    @JsonProperty("idUser")
+    private void fkUser(Integer idUser) {
+        this.fkOwner = new User(idUser);
+        fkOwner.setIdUser(idUser);
+    }
 
     public Integer getIdPet() {
         return idPet;
