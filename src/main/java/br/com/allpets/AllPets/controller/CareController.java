@@ -1,7 +1,7 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.model.User;
-import br.com.allpets.AllPets.service.CareService;
+import br.com.allpets.AllPets.entidades.User;
+import br.com.allpets.AllPets.services.CareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.model.User;
-import br.com.allpets.AllPets.repository.LoginRepository;
+import br.com.allpets.AllPets.entidades.User;
+import br.com.allpets.AllPets.repositories.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
