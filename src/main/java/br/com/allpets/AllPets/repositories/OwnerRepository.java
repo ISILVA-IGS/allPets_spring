@@ -1,5 +1,6 @@
 package br.com.allpets.AllPets.repositories;
 
+import br.com.allpets.AllPets.entidades.Animal;
 import br.com.allpets.AllPets.entidades.User;
 import br.com.allpets.AllPets.modelos.ListUser;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,8 @@ public interface OwnerRepository extends JpaRepository<User, Integer> {
 
     @Query("select new br.com.allpets.AllPets.modelos.ListUser(a) from User a")
     List<ListUser> findAllListUser();
+
+    List<User> findById(int id);
+
+    boolean existsById(int id);
 }

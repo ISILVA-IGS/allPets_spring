@@ -1,28 +1,31 @@
 package br.com.allpets.AllPets.controller;
 
-import br.com.allpets.AllPets.services.OwnerService;
+import br.com.allpets.AllPets.services.FileAllpetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/lista-usuario")
-public class ListUserController {
+@RequestMapping("/arquivo-saida")
+public class FileAllpetsController {
 
-    @Autowired
-    private OwnerService service;
+    private FileAllpetsService service;
+
+    FileAllpetsController(FileAllpetsService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity consultarSimples() {
-        List users = service.allListUser();
+        String file = service.fileOutput();
 
-        return users.isEmpty() ? noContent().build() : ok(users);
+        return file.isEmpty() ? noContent().build() : ok(file);
     }
+
+
 }

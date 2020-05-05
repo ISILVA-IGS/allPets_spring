@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -35,6 +36,18 @@ public class OwnerController {
         }
     }
 
+    @PutMapping(value="/{id}")
+    public ResponseEntity update(@PathVariable("id") int id,
+                                 @RequestBody User user) {
+        if(this.service.existsById(id)){
+            user.setIdUser(id);
+            this.service.putOwner(user);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity createOwner(@RequestBody User newOwner) {
         this.service.createOwner(newOwner);
@@ -43,7 +56,7 @@ public class OwnerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteOwnerId(@PathVariable Integer id){
-        if(this.service.hasOwnerId(id)){
+        if(this.service.existsById(id)){
             this.service.deleteOwnerId(id);
             return ResponseEntity.ok().build();
         }else{

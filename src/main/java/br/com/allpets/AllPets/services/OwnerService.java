@@ -26,9 +26,9 @@ public class OwnerService {
         return this.repository.save(newOwner);
     }
 
-    public Boolean hasOwnerId(Integer id) {
-        return this.repository.existsById(id);
-    }
+    public List findById(int id) { return this.repository.findById(id);}
+
+    public boolean existsById(int id) { return this.repository.existsById(id);}
 
     public Optional<User> oneOwner(Integer id) {
         return this.repository.findById(id);
@@ -38,4 +38,11 @@ public class OwnerService {
         this.repository.deleteById(id);
     }
 
+    public void putOwner(User user) {
+        this.repository.save(user);
+    }
+
+    public List allListUser() {
+        return this.repository.findAllListUser();
+    }
 }

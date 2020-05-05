@@ -1,7 +1,8 @@
 package br.com.allpets.AllPets.controller;
 
 import br.com.allpets.AllPets.entidades.Animal;
-import br.com.allpets.AllPets.services.PetService;
+import br.com.allpets.AllPets.entidades.User;
+import br.com.allpets.AllPets.repositories.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,12 @@ import java.util.Optional;
 public class PetController {
 
     @Autowired
-    private PetService service;
+    private PetRepository repository;
 
     @GetMapping
     public ResponseEntity allCare() {
-        if (this.service.score() > 0) {
-            return ResponseEntity.ok(this.service.all());
+        if (this.repository.count() > 0) {
+            return ResponseEntity.ok(this.repository.findAll());
         }else {
             return ResponseEntity.noContent().build();
         }
@@ -26,7 +27,7 @@ public class PetController {
 
     @GetMapping("/{id}")
     public ResponseEntity onePet(@PathVariable Integer id){
-        Optional<Animal> queryPet = this.service.onePet(id);
+        Optional<Animal> queryPet = this.repository.findById(id);
 
         if(queryPet.isPresent()){
             return ResponseEntity.ok(queryPet.get());
@@ -35,16 +36,28 @@ public class PetController {
         }
     }
 
+    @PutMapping(value="/{id}")
+    public ResponseEntity update(@PathVariable("id") int id,
+                                 @RequestBody Animal animal) {
+        if(this.repository.existsById(id)){
+            animal.setIdPet(id);
+            this.repository.save(animal);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity createPet(@RequestBody Animal newPet) {
-        this.service.createPet(newPet);
+        this.repository.save(newPet);
         return ResponseEntity.created(null).build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deletePetId(@PathVariable Integer id){
-        if(this.service.hasPetId(id)){
-            this.service.deletePetId(id);
+        if(this.repository.existsById(id)){
+            this.repository.deleteById(id);
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.notFound().build();

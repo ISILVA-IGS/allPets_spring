@@ -30,6 +30,8 @@ public class Service {
     @Column( length = 45)
     private Double value;
 
+    public Service(){};
+
     @JsonCreator
     public Service (@JsonProperty("idService") Integer idService ) {
         this.idService = idService;
