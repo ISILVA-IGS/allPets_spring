@@ -49,6 +49,8 @@ public class Animal {
         fkOwner.setIdUser(idUser);
     }
 
+    public Animal(){}
+
     public Integer getIdPet() {
         return idPet;
     }
