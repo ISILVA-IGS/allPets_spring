@@ -33,13 +33,23 @@ public class LoginController {
                 .body(usuarioRepository.saveAndFlush(user));
     }
 
-    @PostMapping("teste")
+    @PostMapping("/logout")
+    public ResponseEntity<?>  logout() {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("logout feito com sucesso");
+    }
+
+    @PostMapping("/logar")
     public ResponseEntity<?>  logar(@RequestBody User user) {
         User dataUser = usuarioRepository.findByEmail(user.getEmail());
         String sessionToken = null;
 
         if(dataUser == null || !dataUser.getPassword().equals(user.getPassword())){
-            dataUser = null;
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("usuário ou senha errados");
 
         }else{
             if(dataUser.getTwoFactor() ){
