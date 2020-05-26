@@ -40,19 +40,19 @@ public class User {
     private String password;
 
     @Column( length = 20)
-    private Integer cpf;
+    private String cpf;
 
     @Column( length = 10)
     private LocalDate birthDate;
 
-    @Column ( length = 20)
-    private String sex;
+    @Column( length = 20)
+    private String whatsapp;
 
     @Column( length = 20)
-    private Integer phone;
+    private String rg;
 
     @Column( length = 45)
-    private Double balanceCredit;
+    private String graduacao;
 
     @Column( length = 45)
     private Double valueTime;
@@ -99,32 +99,12 @@ public class User {
         this.password = password;
     }
 
-    public Integer getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Integer cpf) {
-        this.cpf = cpf;
-    }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public Integer getPhone() {
-        return phone;
     }
 
     public Double getValueTime() {
@@ -135,21 +115,10 @@ public class User {
         this.valueTime = valueTime;
     }
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
 
     public Boolean getTwoFactor() { return twoFactor; }
 
     public void setTwoFactor(Boolean twoFactor) { this.twoFactor = twoFactor; }
-
-    public Double getBalanceCredit() {
-        return balanceCredit;
-    }
-
-    public void setBalanceCredit(Double balanceCredit) {
-        this.balanceCredit = balanceCredit;
-    }
 
     public Integer getTypeUser() {
         return typeUser;
@@ -159,4 +128,35 @@ public class User {
         this.typeUser = typeUser;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getWhatsapp() {
+        return whatsapp;
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getGraduacao() {
+        return graduacao;
+    }
+
+    public void setGraduacao(String graduacao) {
+        this.graduacao = graduacao;
+    }
 }
