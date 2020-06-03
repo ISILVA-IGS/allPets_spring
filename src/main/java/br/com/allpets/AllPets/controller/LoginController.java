@@ -37,7 +37,7 @@ public class LoginController {
     public ResponseEntity<?>  logout() {
 
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.OK)
                 .body("logout feito com sucesso");
     }
 

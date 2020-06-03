@@ -30,6 +30,25 @@ public class Service {
     @Column( length = 45)
     private Double value;
 
+    public User getFkOwner() {
+        return fkOwner;
+    }
+
+    public void setFkOwner(User fkOwner) {
+        this.fkOwner = fkOwner;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Column( length = 45)
+    private Integer status;
+
     public Service(){};
 
     @JsonCreator
