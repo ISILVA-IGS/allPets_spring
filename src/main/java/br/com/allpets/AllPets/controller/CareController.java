@@ -53,7 +53,7 @@ public class CareController {
         Address address = new Address();
 
         address.setFkUser(user);
-        address.setStreet(street);
+        address.setEndereco(street);
         address.setCity(city);
 
 

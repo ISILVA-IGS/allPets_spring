@@ -12,7 +12,13 @@ public class Address {
     private Integer idAddress;
 
     @Column( length = 100)
-    private String street;
+    private Integer number;
+
+    @Column( length = 45)
+    private String bairro;
+
+    @Column( length = 45)
+    private String endereco;
 
     @Column( length = 45)
     private String city;
@@ -22,9 +28,6 @@ public class Address {
 
     @Column(length = 25)
     private Integer cep;
-
-    @Column( length = 45)
-    private String country;
 
     @Column( length = 25)
     private String complement;
@@ -54,14 +57,6 @@ public class Address {
         this.idAddress = idAddress;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getCity() {
         return city;
     }
@@ -86,19 +81,35 @@ public class Address {
         this.cep = cep;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getComplement() {
         return complement;
     }
 
     public void setComplement(String complement) {
         this.complement = complement;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }

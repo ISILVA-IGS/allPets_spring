@@ -13,7 +13,7 @@ public class ListUser {
 
     private String password;
 
-    private Integer cpf;
+    private String cpf;
 
     private LocalDate birthDate;
 
@@ -27,8 +27,6 @@ public class ListUser {
         this.password = user.getPassword();
         this.cpf = user.getCpf();
         this.birthDate = user.getBirthDate();
-        this.sex = user.getSex();
-        this.phone = user.getPhone();
     }
 
     public String getName() {
@@ -55,11 +53,11 @@ public class ListUser {
         this.password = password;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

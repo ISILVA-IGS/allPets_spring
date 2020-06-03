@@ -63,7 +63,7 @@ public class LoginController {
                     varificationCode = rand.nextInt(9999);
 
                     String message = "AllPets: seu codigo de vereficação: " +  varificationCode;
-                    String number = "11"+ dataUser.getPhone();
+                    String number = "11"+ dataUser.getWhatsapp();
 
                     String url = String.format("https://1ly1suchu8.execute-api.us-west-2.amazonaws.com/development/?number=%s&message=%s", number, message);
                     ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);

@@ -20,20 +20,17 @@ public class Animal {
     @Column( length = 10)
     private Integer age;
 
-    @Column( length = 10)
-    private Integer rga;
-
     @Column( length = 45)
     private String breed;
-
-    @Column( length = 45)
-    private Boolean medication;
 
     @Column( length = 10)
     private Double weight;
 
     @Column( length = 45)
     private String size;
+
+    @Column( length = 105)
+    private String observacao;
 
     @ManyToOne
     private User fkOwner;
@@ -83,30 +80,6 @@ public class Animal {
         this.breed = breed;
     }
 
-    public Boolean getMedication() {
-        return medication;
-    }
-
-    public void setMedication(Boolean medication) {
-        this.medication = medication;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Integer getRga() {
-        return rga;
-    }
-
-    public void setRga(Integer rga) {
-        this.rga = rga;
-    }
-
     public String getSize() {
         return size;
     }
@@ -123,4 +96,19 @@ public class Animal {
         this.fkOwner = fkOwner;
     }
 
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 }
