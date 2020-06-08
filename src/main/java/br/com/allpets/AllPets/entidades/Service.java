@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class Service {
@@ -16,10 +16,10 @@ public class Service {
     private Integer idService;
 
     @ManyToOne
-    private User fkCare;
+    private User fkOwner;
 
     @ManyToOne
-    private User fkOwner;
+    private User fkCare;
 
     @Column( length = 45)
     private LocalDate startTime;
@@ -30,68 +30,19 @@ public class Service {
     @Column( length = 45)
     private Double value;
 
-    public User getFkOwner() {
-        return fkOwner;
-    }
-
-    public void setFkOwner(User fkOwner) {
-        this.fkOwner = fkOwner;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     @Column( length = 45)
-    private Integer status;
+    private Integer qtdTime;
 
-    public Service(){};
+    @Column( length = 250)
+    private String description;
 
-    @JsonCreator
-    public Service (@JsonProperty("idService") Integer idService ) {
-        this.idService = idService;
+    public String getDescription() {
+        return description;
     }
 
-    @JsonProperty("idUser")
-    private void fkOwner(Integer idUser) {
-        this.fkOwner = new User(idUser);
-        fkOwner.setIdUser(idUser);
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    @JsonProperty("idUser")
-    private void fkCare(Integer idUser) {
-        this.fkCare = new User(idUser);
-        fkCare.setIdUser(idUser);
-    }
-
-    public Integer getIdService() {
-        return idService;
-    }
-
-    public void setIdService(Integer idService) {
-        this.idService = idService;
-    }
-
-    public User getFkCare() {
-        return fkCare;
-    }
-
-    public void setFkCare(User fkCare) {
-        this.fkCare = fkCare;
-    }
-
-    public User getFkOwnerS() {
-        return fkOwner;
-    }
-
-    public void setFkOwnerS(User fkOwner) {
-        this.fkOwner = fkOwner;
-    }
-
 
     public LocalDate getStartTime() {
         return startTime;
@@ -117,4 +68,72 @@ public class Service {
         this.value = value;
     }
 
+    public Integer getQtdTime() {
+        return qtdTime;
+    }
+
+    public void setQtdTime(Integer qtdTime) {
+        this.qtdTime = qtdTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Column( length = 45)
+    private Integer status;
+
+
+
+    @JsonCreator
+    public Service (@JsonProperty("idService") Integer idService ) {
+        this.idService = idService;
+    }
+
+    @JsonProperty("idUsers")
+    private void fkUsers(Integer idUser) {
+        this.fkCare = new User(idUser);
+        fkCare.setIdUser(idUser);
+
+    }
+
+    @JsonProperty("idUser")
+    private void fkUser(Integer idUser) {
+        this.fkOwner = new User(idUser);
+        fkOwner.setIdUser(idUser);
+
+    }
+
+
+    public Integer getIdService() {
+        return idService;
+    }
+
+    public void setIdService(Integer idService) {
+        this.idService = idService;
+    }
+
+
+    public Service(){};
+
+
+    public User getFkOwner() {
+        return fkOwner;
+    }
+
+    public void setFkOwner(User fkOwner) {
+        this.fkOwner = fkOwner;
+    }
+
+    public User getFkCare() {
+        return fkCare;
+    }
+
+    public void setFkCare(User fkCare) {
+        this.fkCare = fkCare;
+    }
 }
