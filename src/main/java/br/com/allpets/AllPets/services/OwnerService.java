@@ -3,6 +3,7 @@ package br.com.allpets.AllPets.services;
 import br.com.allpets.AllPets.entidades.User;
 import br.com.allpets.AllPets.repositories.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,11 @@ public class OwnerService {
     private OwnerRepository repository;
 
     public List all() {
-        return this.repository.findAll();
+        User owner = new User();
+
+        owner.setTypeUser(1);
+        return
+                this.repository.findAll(Example.of(owner));
     }
 
     public Long score() {

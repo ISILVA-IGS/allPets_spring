@@ -26,8 +26,7 @@ public class AddressController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity criarEsporte(@RequestBody Address novoAddress) {
-        this.repository.save(novoAddress);
 
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.created(null).body(this.repository.save(novoAddress));
     }
 }
