@@ -33,14 +33,7 @@ public class Address {
     @Column( length = 25)
     private String complement;
 
-    @ManyToOne
-    private User fkUser;
 
-    @JsonProperty("idUser")
-    private void fk(Integer idUser) {
-        this.fkUser = new User(idUser);
-        fkUser.setIdUser(idUser);
-    }
 
     @JsonCreator
     public Address (@JsonProperty("idAddress") Integer idAddress ) {
@@ -49,13 +42,6 @@ public class Address {
 
     public Address() {}
 
-    public User getFkUser() {
-        return fkUser;
-    }
-
-    public void setFkUser(User fkUser) {
-        this.fkUser = fkUser;
-    }
 
     public Integer getIdAddress() {
         return idAddress;

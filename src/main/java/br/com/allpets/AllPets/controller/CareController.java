@@ -3,6 +3,7 @@ package br.com.allpets.AllPets.controller;
 import br.com.allpets.AllPets.entidades.Address;
 import br.com.allpets.AllPets.entidades.User;
 import br.com.allpets.AllPets.repositories.AddressRepository;
+import br.com.allpets.AllPets.repositories.CareRepository;
 import br.com.allpets.AllPets.services.CareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -19,6 +20,10 @@ public class CareController {
 
     @Autowired
     private CareService service;
+
+    @Autowired
+    private CareRepository careRepository;
+
 
     @Autowired
     private AddressRepository addressRepository;
@@ -51,16 +56,16 @@ public class CareController {
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String street)
     {
-        User user = new User();
-        user.setTypeUser(2);
         Address address = new Address();
-
-        address.setFkUser(user);
-        address.setEndereco(street);
         address.setCity(city);
+        address.setBairro(street);
+        User user = new User();
+        user.setAddress(address);
+        user.setTypeUser(2);
 
 
-        List consulta = addressRepository.findAll(Example.of(address));
+
+        List consulta = careRepository.findAll(Example.of(user));
 
         return consulta.isEmpty() ? noContent().build() : ok(consulta);
     }

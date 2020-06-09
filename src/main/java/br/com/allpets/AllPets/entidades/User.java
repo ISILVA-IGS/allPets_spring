@@ -60,7 +60,7 @@ public class User {
     @Column( length = 45)
     private Integer typeUser;
 
-    @ManyToOne
+    @OneToOne
     private Address address;
 
     @JsonProperty("idAddress")

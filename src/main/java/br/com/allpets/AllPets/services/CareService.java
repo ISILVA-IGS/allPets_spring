@@ -3,6 +3,7 @@ package br.com.allpets.AllPets.services;
 import br.com.allpets.AllPets.entidades.User;
 import br.com.allpets.AllPets.repositories.CareRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,11 @@ public class CareService {
     private CareRepository repository;
 
     public List all() {
-        return this.repository.findAll();
+        User care = new User();
+
+        care.setTypeUser(2);
+        return
+                this.repository.findAll(Example.of(care));
     }
 
     public Long score() {
