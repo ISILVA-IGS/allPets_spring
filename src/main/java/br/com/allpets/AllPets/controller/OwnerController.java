@@ -16,6 +16,7 @@ public class OwnerController {
     @Autowired
     private OwnerService service;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity allOwner() {
         if (this.service.score() > 0) {
@@ -25,6 +26,7 @@ public class OwnerController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity oneOwner(@PathVariable Integer id){
         Optional<User> queryOwner = this.service.oneOwner(id);
@@ -36,6 +38,7 @@ public class OwnerController {
         }
     }
 
+    @CrossOrigin
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") int id,
                                  @RequestBody User user) {
@@ -48,12 +51,14 @@ public class OwnerController {
         }
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createOwner(@RequestBody User newOwner) {
         this.service.createOwner(newOwner);
         return ResponseEntity.created(null).build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteOwnerId(@PathVariable Integer id){
         if(this.service.existsById(id)){

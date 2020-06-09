@@ -60,6 +60,15 @@ public class User {
     @Column( length = 45)
     private Integer typeUser;
 
+    @ManyToOne
+    private Address address;
+
+    @JsonProperty("idAddress")
+    private void fk(Integer idAddress) {
+        this.address = new Address(idAddress);
+        address.setIdAddress(idAddress);
+    }
+
     @JsonCreator
     public User (@JsonProperty("idUser") Integer idUser ) {
         this.idUser = idUser;
@@ -158,5 +167,13 @@ public class User {
 
     public void setGraduacao(String graduacao) {
         this.graduacao = graduacao;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

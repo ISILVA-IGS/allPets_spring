@@ -13,6 +13,7 @@ public class AddressController {
     @Autowired
     private AddressRepository repository;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity allAddress() {
         if (this.repository.count() > 0) {
@@ -22,6 +23,7 @@ public class AddressController {
         }
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity criarEsporte(@RequestBody Address novoAddress) {
         this.repository.save(novoAddress);

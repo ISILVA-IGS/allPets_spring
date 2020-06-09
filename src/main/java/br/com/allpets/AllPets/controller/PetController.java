@@ -16,6 +16,7 @@ public class PetController {
     @Autowired
     private PetRepository repository;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity allCare() {
         if (this.repository.count() > 0) {
@@ -25,6 +26,7 @@ public class PetController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity onePet(@PathVariable Integer id){
         Optional<Animal> queryPet = this.repository.findById(id);
@@ -36,6 +38,7 @@ public class PetController {
         }
     }
 
+    @CrossOrigin
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") int id,
                                  @RequestBody Animal animal) {
@@ -48,12 +51,14 @@ public class PetController {
         }
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createPet(@RequestBody Animal newPet) {
         this.repository.save(newPet);
         return ResponseEntity.created(null).build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deletePetId(@PathVariable Integer id){
         if(this.repository.existsById(id)){

@@ -23,6 +23,7 @@ public class CareController {
     @Autowired
     private AddressRepository addressRepository;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity allCare() {
         if (this.service.score() > 0) {
@@ -32,6 +33,7 @@ public class CareController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity oneCare(@PathVariable Integer id){
         Optional<User> queryCare = this.service.oneCare(id);
@@ -43,6 +45,7 @@ public class CareController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/search")
     public ResponseEntity search(
             @RequestParam(required = false) String city,
@@ -62,12 +65,14 @@ public class CareController {
         return consulta.isEmpty() ? noContent().build() : ok(consulta);
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createCare(@RequestBody User newCare) {
         this.service.createCare(newCare);
         return ResponseEntity.created(null).build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCareId(@PathVariable Integer id){
         if(this.service.hasCareId(id)){

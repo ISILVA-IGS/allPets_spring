@@ -21,11 +21,13 @@ public class LoginController {
     private LoginRepository usuarioRepository;
     Integer varificationCode = 999999;
 
+    @CrossOrigin
     @GetMapping
     public List<User> listar() {
         return usuarioRepository.findAll();
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody User user) {
         return ResponseEntity
@@ -33,6 +35,7 @@ public class LoginController {
                 .body(usuarioRepository.saveAndFlush(user));
     }
 
+    @CrossOrigin
     @PostMapping("/logout")
     public ResponseEntity<?>  logout() {
 
@@ -41,6 +44,7 @@ public class LoginController {
                 .body("logout feito com sucesso");
     }
 
+    @CrossOrigin
     @PostMapping("/logar")
     public ResponseEntity<?>  logar(@RequestBody User user) {
         User dataUser = usuarioRepository.findByEmail(user.getEmail());

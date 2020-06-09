@@ -1,5 +1,6 @@
 package br.com.allpets.AllPets.entidades;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -40,6 +41,13 @@ public class Address {
         this.fkUser = new User(idUser);
         fkUser.setIdUser(idUser);
     }
+
+    @JsonCreator
+    public Address (@JsonProperty("idAddress") Integer idAddress ) {
+        this.idAddress = idAddress;
+    }
+
+    public Address() {}
 
     public User getFkUser() {
         return fkUser;
@@ -112,4 +120,5 @@ public class Address {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
 }
