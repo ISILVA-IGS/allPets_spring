@@ -51,7 +51,7 @@ public class CareController {
     }
 
     @CrossOrigin
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity search(
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String street)
