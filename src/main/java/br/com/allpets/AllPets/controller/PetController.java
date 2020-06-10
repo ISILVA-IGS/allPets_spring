@@ -54,8 +54,8 @@ public class PetController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity createPet(@RequestBody Animal newPet) {
-        this.repository.save(newPet);
-        return ResponseEntity.created(null).build();
+
+        return ResponseEntity.created(null).body(this.repository.save(newPet));
     }
 
     @CrossOrigin

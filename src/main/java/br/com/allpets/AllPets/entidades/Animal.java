@@ -33,6 +33,7 @@ public class Animal {
     private String observacao;
 
     @ManyToOne
+   @JoinColumn(name = "fk_owner_id_user")
     private User fkOwner;
 
     @JsonCreator

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,6 +63,19 @@ public class User {
 
     @OneToOne
     private Address address;
+
+    @OneToMany
+    @JoinColumn(name = "fk_owner_id_user")
+    private List<Animal> animal;
+
+
+    public List<Animal> getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(List<Animal> animal) {
+        this.animal = animal;
+    }
 
     @JsonProperty("idAddress")
     private void fk(Integer idAddress) {
