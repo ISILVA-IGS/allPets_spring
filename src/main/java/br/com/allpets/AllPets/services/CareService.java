@@ -39,6 +39,12 @@ public class CareService {
         return this.repository.findById(id);
     }
 
+    public void putCare(User user) {
+        this.repository.save(user);
+    }
+
+    public boolean existsById(int id) { return this.repository.existsById(id);}
+
     public void deleteCareId(Integer id) {
         this.repository.deleteById(id);
     }

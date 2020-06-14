@@ -64,17 +64,13 @@ public class User {
     @OneToOne
     private Address address;
 
-    @OneToMany
-    @JoinColumn(name = "fk_owner_id_user")
-    private List<Animal> animal;
+    @OneToOne
+    private Animal animal;
 
-
-    public List<Animal> getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(List<Animal> animal) {
-        this.animal = animal;
+    @JsonProperty("idPet")
+    private void fkPet(Integer idPet) {
+        this.animal = new Animal(idPet);
+        animal.setIdPet(idPet);
     }
 
     @JsonProperty("idAddress")
@@ -189,5 +185,13 @@ public class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 }

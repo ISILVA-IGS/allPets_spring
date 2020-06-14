@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface OwnerRepository extends JpaRepository<User, Integer> {
 
-    @Query("select new br.com.allpets.AllPets.modelos.ListUser(a) from User a")
-    List<ListUser> findAllListUser();
-
     List<User> findById(int id);
 
     boolean existsById(int id);
+
+    List<User> findByTypeUser(Integer typeUser);
+
 }

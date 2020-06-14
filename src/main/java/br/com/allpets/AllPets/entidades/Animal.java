@@ -32,8 +32,7 @@ public class Animal {
     @Column( length = 105)
     private String observacao;
 
-    @ManyToOne
-   @JoinColumn(name = "fk_owner_id_user")
+    @OneToOne
     private User fkOwner;
 
     @JsonCreator

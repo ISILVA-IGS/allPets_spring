@@ -34,7 +34,6 @@ public class Address {
     private String complement;
 
 
-
     @JsonCreator
     public Address (@JsonProperty("idAddress") Integer idAddress ) {
         this.idAddress = idAddress;

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.Session;
+
 import static org.springframework.http.ResponseEntity.*;
 
 import java.util.List;
@@ -51,23 +54,21 @@ public class CareController {
     }
 
     @CrossOrigin
-    @PostMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity search(
             @RequestParam(required = false) String city,
-            @RequestParam(required = false) String street)
+            @RequestParam(required = false) String street,
+            @RequestParam(required = false) Double value)
     {
         Address address = new Address();
         address.setCity(city);
         address.setBairro(street);
-        User user = new User();
-        user.setAddress(address);
-        user.setTypeUser(2);
+        
 
+        List consulta2 = careRepository.findByAddressCityAndAddressBairroAndTypeUserAndValueTimeLessThanEqual(
+                city,street,2,value);
 
-
-        List consulta = careRepository.findAll(Example.of(user));
-
-        return consulta.isEmpty() ? noContent().build() : ok(consulta);
+        return consulta2.isEmpty() ? noContent().build() : ok(consulta2);
     }
 
     @CrossOrigin
@@ -76,6 +77,20 @@ public class CareController {
         this.service.createCare(newCare);
         return ResponseEntity.created(null).build();
     }
+
+    @CrossOrigin
+    @PutMapping(value="/{id}")
+    public ResponseEntity update(@PathVariable("id") int id,
+                                 @RequestBody User user) {
+        if(this.service.existsById(id)){
+            user.setIdUser(id);
+            this.service.putCare(user);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @CrossOrigin
     @DeleteMapping("/{id}")

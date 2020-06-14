@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+import static org.springframework.http.ResponseEntity.*;
+
 @RestController
 @RequestMapping("/pets")
 public class PetController {
@@ -19,10 +21,10 @@ public class PetController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity allCare() {
-        if (this.repository.count() > 0) {
-            return ResponseEntity.ok(this.repository.findAll());
+        if (repository.count() > 0) {
+            return ok(repository.findAll());
         }else {
-            return ResponseEntity.noContent().build();
+            return noContent().build();
         }
     }
 
@@ -32,9 +34,9 @@ public class PetController {
         Optional<Animal> queryPet = this.repository.findById(id);
 
         if(queryPet.isPresent()){
-            return ResponseEntity.ok(queryPet.get());
+            return ok(queryPet.get());
         }else{
-            return ResponseEntity.notFound().build();
+            return notFound().build();
         }
     }
 
@@ -45,9 +47,9 @@ public class PetController {
         if(this.repository.existsById(id)){
             animal.setIdPet(id);
             this.repository.save(animal);
-            return ResponseEntity.ok().build();
+            return ok().build();
         }else{
-            return ResponseEntity.notFound().build();
+            return notFound().build();
         }
     }
 
@@ -55,18 +57,14 @@ public class PetController {
     @PostMapping
     public ResponseEntity createPet(@RequestBody Animal newPet) {
 
-        return ResponseEntity.created(null).body(this.repository.save(newPet));
+        return created(null).body(this.repository.save(newPet));
     }
 
     @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deletePetId(@PathVariable Integer id){
-        if(this.repository.existsById(id)){
-            this.repository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+        repository.deleteAll();
+        return ok().build();
     }
 
 }

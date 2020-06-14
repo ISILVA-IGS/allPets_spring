@@ -47,7 +47,4 @@ public class OwnerService {
         this.repository.save(user);
     }
 
-    public List allListUser() {
-        return this.repository.findAllListUser();
-    }
 }
