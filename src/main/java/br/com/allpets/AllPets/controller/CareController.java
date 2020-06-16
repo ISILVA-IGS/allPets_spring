@@ -63,12 +63,19 @@ public class CareController {
         Address address = new Address();
         address.setCity(city);
         address.setBairro(street);
-        
+        User user = new User();
+        user.setAddress(address);
+        user.setTypeUser(2);
 
-        List consulta2 = careRepository.findByAddressCityAndAddressBairroAndTypeUserAndValueTimeLessThanEqual(
-                city,street,2,value);
+        if(value == null){
+            List consulta = careRepository.findAll(Example.of(user));
+            return consulta.isEmpty() ? noContent().build() : ok(consulta);
+        }else{
+            List consulta = careRepository.findByAddressCityAndAddressBairroAndTypeUserAndValueTimeLessThanEqual(
+                    city,street,2,value);
+            return consulta.isEmpty() ? noContent().build() : ok(consulta);
+        }
 
-        return consulta2.isEmpty() ? noContent().build() : ok(consulta2);
     }
 
     @CrossOrigin
