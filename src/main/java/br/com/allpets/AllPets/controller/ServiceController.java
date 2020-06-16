@@ -38,7 +38,7 @@ public class ServiceController {
         service.setStatus(0);
         serviceRepository.save(service);
 
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.created(null).body(service);
     }
 
     @CrossOrigin
