@@ -48,6 +48,7 @@ public class LoginController {
     @PostMapping("/logar")
     public ResponseEntity<?>  logar(@RequestBody User user) {
         User dataUser = usuarioRepository.findByEmail(user.getEmail());
+
         String sessionToken = null;
 
         if(dataUser == null || !dataUser.getPassword().equals(user.getPassword())){
