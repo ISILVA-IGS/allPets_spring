@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
+		<version>2.2.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.allpets</groupId>
@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -31,6 +31,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
 		<dependency>
@@ -56,6 +60,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-openfeign-core</artifactId>
+			<version>2.2.3.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -63,12 +77,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-openfeign-core</artifactId>
-			<version>2.2.3.RELEASE</version>
-		</dependency>
-	</dependencies>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

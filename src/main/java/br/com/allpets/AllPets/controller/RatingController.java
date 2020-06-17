@@ -8,24 +8,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import static org.springframework.http.ResponseEntity.notFound;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/rating")
 public class RatingController {
-//    @Autowired // injetando um cliente Feign
-//    private RatingClient clienteRating;
+    @Autowired // injetando um cliente Feign
+    private RatingClient clienteRating;
 
 
-//    @GetMapping
-//    public ResponseEntity listRating() {
-//        Rating ratingController = clienteRating.listRating();
-//
-//        if (ratingController!=null) {
-//            return ok(ratingController);
-//        } else {
-//            return notFound().build();
-//        }
-//    }
+    @GetMapping
+    public ResponseEntity listRating() {
+        List<Rating> ratingController = clienteRating.listRating();
+
+        if (ratingController!=null) {
+            return ok(ratingController);
+        } else {
+            return notFound().build();
+        }
+    }
 }
