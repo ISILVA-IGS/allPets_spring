@@ -1,5 +1,6 @@
 package br.com.allpets.AllPets.controller;
 
+import br.com.allpets.AllPets.entidades.Animal;
 import br.com.allpets.AllPets.entidades.Service;
 import br.com.allpets.AllPets.entidades.User;
 import br.com.allpets.AllPets.repositories.ServiceRepository;
@@ -17,10 +18,11 @@ public class ServiceController {
     private ServiceRepository serviceRepository;
 
     @CrossOrigin
-    @PutMapping
-    public ResponseEntity<?> updateService(
-            @RequestParam(required = true) Integer idService,
-            @RequestParam(required = true) Integer status){
+
+
+    @PutMapping(value="/{id}/{status}")
+    public ResponseEntity updateService(@PathVariable("id") int idService,
+                                 @PathVariable("status") int status) {
 
         Service service = serviceRepository.getOne(idService);
 
