@@ -24,7 +24,7 @@ public class Animal {
     private String breed;
 
     @Column( length = 10)
-    private Double weight;
+    private String typePet;
 
     @Column( length = 45)
     private String size;
@@ -96,12 +96,12 @@ public class Animal {
         this.fkOwner = fkOwner;
     }
 
-    public Double getWeight() {
-        return weight;
+    public String getTypePet() {
+        return typePet;
     }
 
-    public void setWeight(Double weight) {
-        this.weight = weight;
+    public void setTypePet(String typePet) {
+        this.typePet = typePet;
     }
 
     public String getObservacao() {
