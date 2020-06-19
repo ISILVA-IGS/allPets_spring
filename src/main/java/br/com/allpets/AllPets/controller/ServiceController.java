@@ -18,8 +18,6 @@ public class ServiceController {
     private ServiceRepository serviceRepository;
 
     @CrossOrigin
-
-
     @PutMapping(value="/{id}/{status}")
     public ResponseEntity updateService(@PathVariable("id") int idService,
                                  @PathVariable("status") int status) {
@@ -30,7 +28,7 @@ public class ServiceController {
 
         serviceRepository.saveAndFlush(service);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.created(null).body(service);
     };
 
     @CrossOrigin
