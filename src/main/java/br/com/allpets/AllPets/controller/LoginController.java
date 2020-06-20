@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -58,27 +59,19 @@ public class LoginController {
 
         }else{
             if(dataUser.getTwoFactor() ){
-                if(user.getTwoFactorCode() != null && !user.getTwoFactorCode().equals(varificationCode)){
-                    return ResponseEntity
-                            .status(HttpStatus.FORBIDDEN)
-                            .body("codigo de varificação errado !");
-                }else if(user.getTwoFactorCode() == null) {
                     RestTemplate restTemplate = new RestTemplate();
                     Random rand = new Random();
                     varificationCode = rand.nextInt(9999);
 
                     String message = "AllPets: seu codigo de vereficação: " +  varificationCode;
                     String number = "11"+ dataUser.getWhatsapp();
-
+                    dataUser.setTwoFactorCode(varificationCode);
                     String url = String.format("https://1ly1suchu8.execute-api.us-west-2.amazonaws.com/development/?number=%s&message=%s", number, message);
                     ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
                     return ResponseEntity
-                            .status(HttpStatus.FORBIDDEN)
-                            .body("autenticação em dois fatores ativa, codigo enviado para o numero cadastrado ");
-                }
-
-
+                            .status(HttpStatus.OK)
+                            .body(dataUser);
             }
 
         }
