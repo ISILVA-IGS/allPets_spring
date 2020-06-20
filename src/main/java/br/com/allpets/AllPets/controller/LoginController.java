@@ -52,7 +52,7 @@ public class LoginController {
 
         String sessionToken = null;
 
-        if(dataUser == null || !dataUser.getPassword().equals(user.getPassword())){
+        if(dataUser == null || !dataUser.getPassword().equals(user.getPassword()) || !dataUser.getTypeUser().equals(user.getTypeUser())){
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body("usuário ou senha errados");
