@@ -71,7 +71,7 @@ public class LoginController {
 
                     return ResponseEntity
                             .status(HttpStatus.OK)
-                            .body(dataUser);
+                            .body(response);
             }
 
         }
