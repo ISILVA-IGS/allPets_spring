@@ -2,7 +2,7 @@ package br.com.allpets.AllPets.components;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+
 public class PilhaObj <T> {
     private int topo;
     private T[] pilha;
