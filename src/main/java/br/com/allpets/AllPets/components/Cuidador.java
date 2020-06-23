@@ -63,7 +63,6 @@ public class Cuidador implements ArquivoGrava{
         User user = new User();
         service.setFkCare(idUser);
 
-
         corpo += String.format("%-5s", "02");
 
         Service serviceFor = serviceRepository.findAll(Example.of(service)).get(0);
@@ -75,7 +74,7 @@ public class Cuidador implements ArquivoGrava{
         corpo += String.format("%05.2f", serviceFor.getFkCare().getValueTime());
         Registro(nomeArq, corpo);
 
-        for(int i = 0; i< serviceRepository.findAll(Example.of(service)).size();i++){
+        for(int i = 0; i<serviceRepository.findAll(Example.of(service)).size();i--){
             Service serviceF = serviceRepository.findAll(Example.of(service)).get(i);
             corpoDono = String.format("%-5s", "03");
             corpoDono += String.format("%-20s", serviceF.getFkOwner().getName());

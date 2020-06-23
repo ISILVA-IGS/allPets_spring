@@ -61,7 +61,10 @@ public class ServiceController {
         service.setFkCare(care);
 
         if(ord){
-            return ResponseEntity.ok(serviceRepository.findAllId());
+
+            return ResponseEntity.ok(idCare == null?
+                    serviceRepository.findByFkOwnerIdUserOrderByIdServiceDesc(idOwner):
+            serviceRepository.findByFkCareIdUserOrderByIdServiceDesc(idCare));
         }else{
             return ResponseEntity.ok(this.serviceRepository.findAll(Example.of(service)));
         }
