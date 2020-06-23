@@ -32,19 +32,12 @@ public class Animal {
     @Column( length = 105)
     private String observacao;
 
-    @OneToOne
-    private User fkOwner;
 
     @JsonCreator
     public Animal (@JsonProperty("idPet") Integer idPet ) {
         this.idPet = idPet;
     }
 
-    @JsonProperty("idUser")
-    private void fkUser(Integer idUser) {
-        this.fkOwner = new User(idUser);
-        fkOwner.setIdUser(idUser);
-    }
 
     public Animal(){}
 
@@ -86,14 +79,6 @@ public class Animal {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public User getFkOwner() {
-        return fkOwner;
-    }
-
-    public void setFkOwner(User fkOwner) {
-        this.fkOwner = fkOwner;
     }
 
     public String getTypePet() {

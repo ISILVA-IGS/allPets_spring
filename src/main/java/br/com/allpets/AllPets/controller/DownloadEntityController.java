@@ -11,18 +11,19 @@ import java.io.*;
 
 
 @RestController
-@RequestMapping("/teste")
+@RequestMapping("/arquivo")
 public class DownloadEntityController {
 
     @Autowired
     Cuidador cuidador;
 
+    @CrossOrigin
     @GetMapping
     public HttpEntity<?> dowload(@RequestParam(required = false) User idUser) {
 
         cuidador.grava(idUser);
 
-        File file = new File("HistoricoCuidador.txt");
+        File file = new File("Historico.txt");
         byte[] bFile = new byte[(int) file.length()];
         FileInputStream fileInputStream = null;
         try {
@@ -34,7 +35,7 @@ public class DownloadEntityController {
         }
        file.delete();
         return new DownloadEntity(bFile,
-                "HistoricoCuidador" + ".txt");
+                "Historico" + ".txt");
     }
 
 }

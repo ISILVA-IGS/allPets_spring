@@ -45,7 +45,7 @@ public class Cuidador implements ArquivoGrava{
 
     @Override
     public void grava(User idUser) {
-        String nomeArq = "HistoricoCuidador.txt";
+        String nomeArq = "Historico.txt";
         String header = "";
         String corpo = "";
         String corpoDono= "";
@@ -54,15 +54,14 @@ public class Cuidador implements ArquivoGrava{
         Date dataDeHoje = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        header += String.format("%-5s", "00 SERVIÇO");
+        header += String.format("%-5s", "00 SERVIÇO ");
         header += String.format("%-5s", formatter.format(dataDeHoje));
         header += String.format("%-5s", "01");
         Registro(nomeArq, header);
 
         Service service = new Service();
-        Animal animal = new Animal();
+        User user = new User();
         service.setFkCare(idUser);
-        animal.setFkOwner(idUser);
 
 
         corpo += String.format("%-5s", "02");
@@ -78,14 +77,13 @@ public class Cuidador implements ArquivoGrava{
 
         for(int i = 0; i< serviceRepository.findAll(Example.of(service)).size();i++){
             Service serviceF = serviceRepository.findAll(Example.of(service)).get(i);
-            Animal pet = petRepository.findAll(Example.of(animal)).get(i);
             corpoDono = String.format("%-5s", "03");
             corpoDono += String.format("%-20s", serviceF.getFkOwner().getName());
             corpoDono += String.format("%-15s", serviceF.getFkOwner().getAddress().getCity());
             corpoDono += String.format("%-15s", serviceF.getFkOwner().getAddress().getBairro());
-            corpoDono += String.format("%-10s", pet.getName());
-            corpoDono += String.format("%-13s", pet.getSize());
-            corpoDono += String.format(pet.getTypePet());
+            corpoDono += String.format("%-10s" ,serviceF.getFkOwner().getAnimal().getTypePet());
+            corpoDono += String.format("%-10s", serviceF.getFkOwner().getAnimal().getName());
+            corpoDono += String.format("%-10s", serviceF.getFkOwner().getAnimal().getSize());
             Registro(nomeArq,corpoDono);
         }
 
